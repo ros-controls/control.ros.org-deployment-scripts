@@ -100,7 +100,7 @@ rm -rf ros2_controllers/.git
 find ros2_controllers -type f -not -name "*.rst" | xargs rm
 echo "Sanity check"
 ls -la
-ls ros2_controllers/doc/index.rst
+ls ros2_controllers/doc/
 echo ::endgroup::
 
 
