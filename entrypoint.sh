@@ -91,6 +91,11 @@ else
     echo ::endgroup::
 fi
 
+# collect ros2_controllers repo
+echo ::group::Collecting ros2_controllers docs
+ls -la
+git clone https://github.com/bmagyar/ros2_controllers -b add-docs
+
 # git config
 echo ::group::Set commiter
 echo "git config user.name $author_name"
