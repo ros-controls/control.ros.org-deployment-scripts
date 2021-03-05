@@ -7,6 +7,7 @@ set -e
     exit 1;
 };
 
+branch_name=master
 docs_src=$GITHUB_WORKSPACE/docs
 docs_html=$GITHUB_WORKSPACE/gh-pages
 sphinx_doctree=$GITHUB_WORKSPACE/.doctree
@@ -30,7 +31,7 @@ echo "git remote add origin https://github.com/$GITHUB_REPOSITORY.git"
 git remote add origin https://$GITHUB_ACTOR:$INPUT_GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
 echo ::endgroup::
 echo ::group::Fetching the repository
-echo "git fetch origin +$GITHUB_SHA:refs/remotes/origin/docs"
+echo "git fetch origin +$z:refs/remotes/origin/docs"
 git fetch origin +$GITHUB_SHA:refs/remotes/origin/docs
 echo ::endgroup::
 echo ::group::Checkout ref
@@ -93,8 +94,15 @@ fi
 
 # collect ros2_controllers repo
 echo ::group::Collecting ros2_controllers docs
-ls -la
 git clone https://github.com/bmagyar/ros2_controllers -b add-docs
+echo "Cleaning up non-doc stuff"
+rm -rf ros2_controllers/.git
+find ros2_controllers -type f -not -name "*.rst" | xargs rm
+echo "Sanity check"
+ls -la
+ls ros2_controllers/doc/index.rst
+echo ::endgroup::
+
 
 # git config
 echo ::group::Set commiter
