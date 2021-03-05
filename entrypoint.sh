@@ -100,7 +100,7 @@ find ros2_controllers -type f -not -name "*.rst" | xargs rm
 echo "Sanity check"
 mv ros2_controllers $docs_src/$INPUT_SOURCE_DIR/
 ls -la $docs_src/$INPUT_SOURCE_DIR
-ls ros2_controllers/doc/
+ls -la $docs_src/$INPUT_SOURCE_DIR/ros2_controllers/doc/
 echo ::endgroup::
 
 
