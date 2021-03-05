@@ -7,7 +7,6 @@ set -e
     exit 1;
 };
 
-branch_name=master
 docs_src=$GITHUB_WORKSPACE/docs
 docs_html=$GITHUB_WORKSPACE/gh-pages
 sphinx_doctree=$GITHUB_WORKSPACE/.doctree
@@ -99,7 +98,8 @@ echo "Cleaning up non-doc stuff"
 rm -rf ros2_controllers/.git
 find ros2_controllers -type f -not -name "*.rst" | xargs rm
 echo "Sanity check"
-ls -la
+mv ros2_controllers $docs_src/$INPUT_SOURCE_DIR/
+ls -la $docs_src/$INPUT_SOURCE_DIR
 ls ros2_controllers/doc/
 echo ::endgroup::
 
