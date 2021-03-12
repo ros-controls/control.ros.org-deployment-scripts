@@ -138,11 +138,13 @@ if [ "$INPUT_CREATE_README" = true ] ; then
 fi
 
 # commit and push
-echo ::group::Push
-echo "git add ."
-git add .
-echo 'git commit --allow-empty -m "From $GITHUB_REF $docs_sha8"'
-git commit --allow-empty -m "From $GITHUB_REF $docs_sha8"
-echo "git push origin gh-pages"
-git push origin gh-pages
-echo ::endgroup::
+if [ "$INPUT_DEPLOY" = true ] ; then
+    echo ::group::Push
+    echo "git add ."
+    git add .
+    echo 'git commit --allow-empty -m "From $GITHUB_REF $docs_sha8"'
+    git commit --allow-empty -m "From $GITHUB_REF $docs_sha8"
+    echo "git push origin gh-pages"
+    git push origin gh-pages
+    echo ::endgroup::
+fi
