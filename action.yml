@@ -17,6 +17,9 @@ inputs:
   install_extensions:
     description: 'Install Sphinx extensions listed in $source_dir/requirements.txt'
     default: true
+  deploy:
+    description: 'Push result to gh-pages'
+    default: false
 outputs:
   name:
     description: 'Author name'
