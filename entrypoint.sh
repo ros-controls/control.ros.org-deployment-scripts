@@ -93,10 +93,16 @@ fi
 
 # collect ros2_controllers repo
 echo ::group::Collecting ros2_controllers docs
+echo "Cleaning up previous checkout"
+ls -lh
+rm -rf ros2_controllers
+ls -lh
 git clone https://github.com/bmagyar/ros2_controllers -b add-docs
+ls -lh
 echo "Cleaning up non-doc stuff"
 rm -rf ros2_controllers/.git
 find ros2_controllers -type f -not -name "*.rst" | xargs rm
+find ros2_controllers -type f -name "CHANGELOG.rst" | xargs rm
 echo "Sanity check"
 mv ros2_controllers $docs_src/$INPUT_SOURCE_DIR/
 ls -la $docs_src/$INPUT_SOURCE_DIR
