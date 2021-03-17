@@ -27,7 +27,7 @@ cd $docs_src
 echo "git init"
 git init
 echo "git remote add origin https://github.com/$GITHUB_REPOSITORY.git"
-git remote add origin https://$GITHUB_ACTOR:$INPUT_GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
+git remote add origin https://github.com/$GITHUB_REPOSITORY.git
 echo ::endgroup::
 echo ::group::Fetching the repository
 echo "git fetch origin +$z:refs/remotes/origin/docs"
@@ -59,7 +59,7 @@ cd $docs_html
 echo "git init"
 git init
 echo "git remote add origin https://github.com/$GITHUB_REPOSITORY.git"
-git remote add origin https://$GITHUB_ACTOR:$INPUT_GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
+git remote add origin https://github.com/$GITHUB_REPOSITORY.git
 echo ::endgroup::
 
 # check remote branch exist first
@@ -146,6 +146,10 @@ fi
 # commit and push
 if [ "$INPUT_DEPLOY" = true ] ; then
     echo ::group::Push
+    echo "git remote rm origin"
+    git remote rm origin
+    echo "git remote add origin https://$GITHUB_ACTOR:$INPUT_GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+    git remote add origin https://$GITHUB_ACTOR:$INPUT_GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git
     echo "git add ."
     git add .
     echo 'git commit --allow-empty -m "From $GITHUB_REF $docs_sha8"'
