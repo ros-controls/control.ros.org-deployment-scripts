@@ -2,7 +2,7 @@
 
 set -e
 
-[ -z "${INPUT_GITHUB_TOKEN}" ] && [ "$INPUT_DEPLOY" = true ] {
+[ -z "${INPUT_GITHUB_TOKEN}" ] && [ "$INPUT_DEPLOY" = true ] && {
     echo 'Missing input "github_token: ${{ secrets.GITHUB_TOKEN }}".';
     exit 1;
 };
