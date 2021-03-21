@@ -97,7 +97,7 @@ echo "Cleaning up previous checkout"
 ls -lh
 rm -rf ros2_controllers
 ls -lh
-git clone https://github.com/bmagyar/ros2_controllers -b add-docs
+git clone https://github.com/bmagyar/ros2_controllers -b master
 ls -lh
 echo "Cleaning up non-doc stuff"
 rm -rf ros2_controllers/.git
