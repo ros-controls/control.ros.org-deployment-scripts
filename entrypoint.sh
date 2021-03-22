@@ -95,9 +95,8 @@ fi
 echo ::group::Collecting ros2_controllers docs
 echo "Cleaning up previous checkout"
 rm -rf ros2_controllers
-find .
 echo "Cloning controllers repo"
-git clone https://github.com/bmagyar/ros2_controllers -b master
+git clone https://github.com/ros-controls/ros2_controllers -b master
 echo "Cleaning up non-doc stuff"
 rm -rf ros2_controllers/.git
 find ros2_controllers -type f -not -name "*.rst" | xargs -r rm
