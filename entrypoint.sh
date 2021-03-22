@@ -95,16 +95,17 @@ fi
 echo ::group::Collecting ros2_controllers docs
 echo "Cleaning up previous checkout"
 rm -rf ros2_controllers
-ls -lh
+find .
 echo "Cloning controllers repo"
 git clone https://github.com/bmagyar/ros2_controllers -b master
-ls -lh
 echo "Cleaning up non-doc stuff"
 rm -rf ros2_controllers/.git
 find ros2_controllers -type f -not -name "*.rst" | xargs -r rm
 find ros2_controllers -type f -name "CHANGELOG.rst" | xargs -r rm
+find .
 echo "Sanity check"
 mv ros2_controllers $docs_src/$INPUT_SOURCE_DIR/
+find .
 ls -la $docs_src/$INPUT_SOURCE_DIR
 ls -la $docs_src/$INPUT_SOURCE_DIR/ros2_controllers/doc/
 echo ::endgroup::
