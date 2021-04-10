@@ -101,12 +101,39 @@ echo "Cleaning up non-doc stuff"
 rm -rf ros2_controllers/.git
 find ros2_controllers -type f -not -name "*.rst" | xargs -r rm
 find ros2_controllers -type f -name "CHANGELOG.rst" | xargs -r rm
-find .
 echo "Sanity check"
 mv ros2_controllers $docs_src/$INPUT_SOURCE_DIR/
 find .
-ls -la $docs_src/$INPUT_SOURCE_DIR
-ls -la $docs_src/$INPUT_SOURCE_DIR/ros2_controllers/doc/
+echo ::endgroup::
+
+# collect ros2_control repo
+echo ::group::Collecting ros2_control docs
+echo "Cleaning up previous checkout"
+rm -rf ros2_control
+echo "Cloning controllers repo"
+git clone https://github.com/ros-controls/ros2_control -b master
+echo "Cleaning up non-doc stuff"
+rm -rf ros2_control/.git
+find ros2_control -type f -not -name "*.rst" | xargs -r rm
+find ros2_control -type f -name "CHANGELOG.rst" | xargs -r rm
+echo "Sanity check"
+mv ros2_control $docs_src/$INPUT_SOURCE_DIR/
+find .
+echo ::endgroup::
+
+# collect ros2_control_demos repo
+echo ::group::Collecting ros2_control_demos docs
+echo "Cleaning up previous checkout"
+rm -rf ros2_control_demos
+echo "Cloning controllers repo"
+git clone https://github.com/ros-controls/ros2_control_demos -b master
+echo "Cleaning up non-doc stuff"
+rm -rf ros2_control_demos/.git
+find ros2_control_demos -type f -not -name "*.rst" | xargs -r rm
+find ros2_control_demos -type f -name "CHANGELOG.rst" | xargs -r rm
+echo "Sanity check"
+mv ros2_control_demos $docs_src/$INPUT_SOURCE_DIR/
+find .
 echo ::endgroup::
 
 
